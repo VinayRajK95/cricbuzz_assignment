@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "06974AF3-874C-45CB-BFEF-D1878D484014",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Cricbuzz_assignment.xcodeproj",
+      "identifier" : "F5DB0FA82A86155800D98D83",
+      "name" : "Cricbuzz_assignment"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Cricbuzz_assignment.xcodeproj",
+        "identifier" : "F5DB0FBE2A86155A00D98D83",
+        "name" : "Cricbuzz_assignmentTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Cricbuzz_assignment.xcodeproj",
+        "identifier" : "F5DB0FC82A86155A00D98D83",
+        "name" : "Cricbuzz_assignmentUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
