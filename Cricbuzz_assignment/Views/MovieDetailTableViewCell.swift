@@ -114,9 +114,11 @@ class MovieDetailTableViewCell: UITableViewCell
 
 extension MovieDetailTableViewCell: ConfigurableCell
 {
-    func configure(with data: Movie)
+    func configure(with data: Any)
     {
-        let movie = data
+        guard let movie = data as? Movie
+        else { return }
+        
         titleLabel.text = movie.title
         actorsLabel.text = "Actors: \(movie.actors)"
         runtimeLabel.text = "Runtime: \(movie.runtime) mins"

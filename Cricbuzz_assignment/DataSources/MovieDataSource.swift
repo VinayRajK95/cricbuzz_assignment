@@ -50,7 +50,7 @@ class MovieDataSource
     {
         var title: String
         var sectionType: Section
-        var isCollapsed: Bool = true
+        var isCollapsed: Bool
     }
     
     private let networkManager: NetworkManagerProtocol

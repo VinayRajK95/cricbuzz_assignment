@@ -76,14 +76,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: sectionType.cellIdentifier, for: indexPath)
         
         let data = viewModel.getDataForRow(for: sectionType, at: indexPath)
-
-        if let movie = data as? Movie, let cell = cell as? MovieDetailTableViewCell
-        {
-            cell.configure(with: movie)
-        }
-        else if let title = (data as? GroupedMovies)?.identifier, let cell = cell as? MovieTitleTableViewCell {
-            cell.configure(with: title)
-        }
+        (cell as? ConfigurableCell)?.configure(with: data)
         
         return cell
     }
@@ -144,4 +137,3 @@ extension MoviesViewController: UISearchBarDelegate
         filterMovies()
     }
 }
-

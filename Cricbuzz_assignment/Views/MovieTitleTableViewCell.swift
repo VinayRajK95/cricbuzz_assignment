@@ -9,8 +9,8 @@ import UIKit
 
 protocol ConfigurableCell
 {
-    associatedtype DataType
-    func configure(with data: DataType)
+//    associatedtype DataType
+    func configure(with data: Any)
 }
 
 class MovieTitleTableViewCell: UITableViewCell
@@ -41,8 +41,8 @@ class MovieTitleTableViewCell: UITableViewCell
 
 extension MovieTitleTableViewCell: ConfigurableCell
 {
-    func configure(with data: String)
+    func configure(with data: Any)
     {
-        titleLabel.text = data
+        titleLabel.text = (data as? GroupedMovies)?.identifier
     }
 }
