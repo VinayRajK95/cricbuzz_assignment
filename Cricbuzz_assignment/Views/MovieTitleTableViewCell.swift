@@ -35,7 +35,7 @@ class MovieTitleTableViewCell: UITableViewCell
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(titleLabel)
-        titleLabel.fillInSuperView(leading: 32, trailing: 16, top: 8, bottom: 8)
+        titleLabel.fillInSuperView(leading: UIUtils.thirtTwoPX, trailing: UIUtils.twelvePX, top: UIUtils.eightPX, bottom: UIUtils.eightPX)
     }
 }
 

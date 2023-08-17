@@ -113,7 +113,7 @@ class MoviesViewModel
 
     func filterMovies()
     {
-        if let expandedSection = currentlyExpandedSection
+        if let expandedSection = currentlyExpandedSection, isSearchTextEmpty
         {
             let sectionType = getSectionType(for: expandedSection)
             dataSource.filterMovies(text: searchBarText, attribute: sectionType)

@@ -71,10 +71,10 @@ class InfoPopupViewController: UIViewController
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -8)
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIUtils.eightPX),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIUtils.eightPX),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIUtils.eightPX),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -UIUtils.eightPX)
         ])
     }
 }

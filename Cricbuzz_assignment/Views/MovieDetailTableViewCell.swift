@@ -85,30 +85,30 @@ class MovieDetailTableViewCell: UITableViewCell
     private func setupConstraints()
     {
         // Constraints for posterImageView
-        posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12).isActive = true
-        posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-        posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
+        posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX).isActive = true
+        posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIUtils.twelvePX).isActive = true
+        posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UIUtils.twelvePX).isActive = true
         posterImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         posterImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // Constraints for titleLabel
-        titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 12).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: UIUtils.twelvePX).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIUtils.twelvePX).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX).isActive = true
         
         // Constraints for actorsLabel
-        actorsLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 12).isActive = true
-        actorsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12).isActive = true
-        actorsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
+        actorsLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: UIUtils.twelvePX).isActive = true
+        actorsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX).isActive = true
+        actorsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIUtils.eightPX).isActive = true
         
         // Constraints for runtimeLabel
-        runtimeLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 12).isActive = true
-        runtimeLabel.topAnchor.constraint(equalTo: actorsLabel.bottomAnchor, constant: 4).isActive = true
+        runtimeLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: UIUtils.twelvePX).isActive = true
+        runtimeLabel.topAnchor.constraint(equalTo: actorsLabel.bottomAnchor, constant: UIUtils.fourPX).isActive = true
         
         // Constraints for directorLabel
-        directorLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 12).isActive = true
-        directorLabel.topAnchor.constraint(equalTo: runtimeLabel.bottomAnchor, constant: 4).isActive = true
-        directorLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -12).isActive = true
+        directorLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: UIUtils.twelvePX).isActive = true
+        directorLabel.topAnchor.constraint(equalTo: runtimeLabel.bottomAnchor, constant: UIUtils.fourPX).isActive = true
+        directorLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -UIUtils.twelvePX).isActive = true
     }
 }
 

@@ -22,6 +22,7 @@
 		F5B2BA1D2A87C0E800940503 /* InfoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B2BA1C2A87C0E800940503 /* InfoPopupViewController.swift */; };
 		F5BC98BF2A8DE38600F1741C /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC98BE2A8DE38600F1741C /* JsonParser.swift */; };
 		F5BC98C12A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC98C02A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift */; };
+		F5BC98C32A8E0E5700F1741C /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC98C22A8E0E5700F1741C /* UIUtils.swift */; };
 		F5DB0FAD2A86155800D98D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FAC2A86155800D98D83 /* AppDelegate.swift */; };
 		F5DB0FAF2A86155800D98D83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FAE2A86155800D98D83 /* SceneDelegate.swift */; };
 		F5DB0FB12A86155800D98D83 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FB02A86155800D98D83 /* MoviesViewController.swift */; };
@@ -69,6 +70,7 @@
 		F5B2BA1C2A87C0E800940503 /* InfoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewController.swift; sourceTree = "<group>"; };
 		F5BC98BE2A8DE38600F1741C /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		F5BC98C02A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeaderView.swift; sourceTree = "<group>"; };
+		F5BC98C22A8E0E5700F1741C /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		F5DB0FA92A86155800D98D83 /* Cricbuzz_assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cricbuzz_assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DB0FAC2A86155800D98D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5DB0FAE2A86155800D98D83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				F5B2BA002A87497600940503 /* UIView+constraints.swift */,
 				F5B2BA1A2A87BDF800940503 /* UIImageView+extension.swift */,
 				F5BC98BE2A8DE38600F1741C /* JsonParser.swift */,
+				F5BC98C22A8E0E5700F1741C /* UIUtils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				F5B2BA1D2A87C0E800940503 /* InfoPopupViewController.swift in Sources */,
 				F5B2BA192A87B27900940503 /* RatingControl.swift in Sources */,
 				F5B2BA0C2A87818900940503 /* MovieDetailTableViewCell.swift in Sources */,
+				F5BC98C32A8E0E5700F1741C /* UIUtils.swift in Sources */,
 				F5B2BA132A879C1A00940503 /* MovieListViewModel.swift in Sources */,
 				F5B2BA052A874DEA00940503 /* MoviesViewModel.swift in Sources */,
 				F5BC98C12A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift in Sources */,

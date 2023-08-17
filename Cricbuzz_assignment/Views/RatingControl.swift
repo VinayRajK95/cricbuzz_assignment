@@ -59,6 +59,7 @@ class RatingControl: UIControl
     
     private func dismissPopup()
     {
-        NotificationCenter.default.post(name: NSNotification.Name("dismissPopup"), object: nil)
+        // Do nothing
+        // Popover gets dismissed by itself
     }
 }

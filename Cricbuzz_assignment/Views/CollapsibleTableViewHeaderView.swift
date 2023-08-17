@@ -33,9 +33,9 @@ class CollapsibleTableViewHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(titleLabel)
 
         // setup constraints
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twentyFourPX).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twentyFourPX).isActive = true
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         self.addGestureRecognizer(tapGesture)

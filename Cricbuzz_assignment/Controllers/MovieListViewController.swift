@@ -9,6 +9,7 @@ import UIKit
 
 class MovieListViewController: UIViewController
 {
+    private let cellReuserIdentifier = "Cell"
     private lazy var tableView: UITableView =
     {
         let tableView = UITableView()
@@ -44,7 +45,7 @@ class MovieListViewController: UIViewController
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuserIdentifier)
     }
 }
 
@@ -58,7 +59,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuserIdentifier, for: indexPath)
         let movie = viewModel.movies[indexPath.row]
         cell.textLabel?.text = movie.title
         return cell

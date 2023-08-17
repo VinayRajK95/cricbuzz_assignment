@@ -22,7 +22,7 @@ class MovieDetailViewController: UIViewController
     private let titleLabel: UILabel =
     {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont.boldSystemFont(ofSize: UIUtils.twentyFourPX)
         label.numberOfLines = .zero
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -141,47 +141,47 @@ class MovieDetailViewController: UIViewController
         
         NSLayoutConstraint.activate([
             // posterImageView constraints
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIUtils.twelvePX),
             posterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             posterImageView.widthAnchor.constraint(equalToConstant: 300),
             posterImageView.heightAnchor.constraint(equalToConstant: 400),
 
             // titleLabel constraints
-            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 24),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: UIUtils.twelvePX),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
 
             // actors constraints
-            actors.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            actors.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            actors.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            actors.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIUtils.twelvePX),
+            actors.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
+            actors.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
 
             // releaseDateLabel constraints
-            releaseDateLabel.topAnchor.constraint(equalTo: actors.bottomAnchor, constant: 12),
-            releaseDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            releaseDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            releaseDateLabel.topAnchor.constraint(equalTo: actors.bottomAnchor, constant: UIUtils.twelvePX),
+            releaseDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
+            releaseDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
 
             // genreLabel constraints
-            genreLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 12),
-            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            genreLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: UIUtils.twelvePX),
+            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
+            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
 
             // ratingLabel constraints
-            ratingLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 12),
-            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            ratingLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: UIUtils.twelvePX),
+            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
             
             // ratingInfo constraints
-            ratingInfo.leadingAnchor.constraint(equalTo: ratingLabel.trailingAnchor, constant: 8),
-            ratingInfo.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -24),
+            ratingInfo.leadingAnchor.constraint(equalTo: ratingLabel.trailingAnchor, constant: UIUtils.eightPX),
+            ratingInfo.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
             ratingInfo.centerYAnchor.constraint(equalTo: ratingLabel.centerYAnchor),
-            ratingInfo.widthAnchor.constraint(equalToConstant: 24),
-            ratingInfo.heightAnchor.constraint(equalToConstant: 24),
+            ratingInfo.widthAnchor.constraint(equalToConstant: UIUtils.twentyFourPX),
+            ratingInfo.heightAnchor.constraint(equalToConstant: UIUtils.twentyFourPX),
 
             // plotLabel constraints
-            plotLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 12),
-            plotLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            plotLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            plotLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            plotLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: UIUtils.twelvePX),
+            plotLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX),
+            plotLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIUtils.twelvePX),
+            plotLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UIUtils.twentyFourPX)
         ])
     }
     
@@ -257,7 +257,8 @@ extension MovieDetailViewController: UIPopoverPresentationControllerDelegate
         dismiss(animated: true, completion: nil)
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle
+    {
         return .none
     }
 }
