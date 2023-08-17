@@ -7,6 +7,18 @@
 
 import UIKit
 
+/*
+ not using associated type bcuz we would have to downcast the type to know what kind of cell is to be used(was asked to call cell.configure only once)
+ probable code in cellForRow(at)
+ if let movie = data as? Movie, let cell = cell as? MovieDetailTableViewCell
+ {
+     cell.configure(with: movie)
+ }
+ else if let title = (data as? GroupedMovies)?.identifier, let cell = cell as? MovieTitleTableViewCell {
+     cell.configure(with: title)
+ }
+ */
+
 protocol ConfigurableCell
 {
 //    associatedtype DataType
