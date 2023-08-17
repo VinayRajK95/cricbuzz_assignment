@@ -57,7 +57,6 @@ class InfoPopupViewController: UIViewController
         preferredContentSize = .init(width: 230, height: 40)
     }
 
-
     private func setupUI()
     {
         view.backgroundColor = .white

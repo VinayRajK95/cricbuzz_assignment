@@ -12,28 +12,22 @@ class MoviesViewModelTests: XCTestCase
 {
     typealias SectionType = MovieDataSource.Section
     
-    var viewModel: MoviesViewModel!
+    var viewModel = MoviesViewModel(movieNetworkManager: MovieLocalNetworkManager())
 
     override func setUp() {
         super.setUp()
         
         let expectation = expectation(description: "Movies")
-        JSONHelper.fetchMoviesModel { [unowned self] result in
-            switch result {
-                case .success(let movies):
-                    viewModel = MoviesViewModel(movies: movies)
-                    viewModel.filterMovies(text: "", section: .actors)
-                case .failure(let error):
-                    debugPrint(error.localizedDescription)
-                }
-            expectation.fulfill()
+        viewModel.fetchMovies
+        {
+                expectation.fulfill()
         }
         waitForExpectations(timeout: 1)
     }
 
     func testNumberOfSections() {
         let numberOfSections = viewModel.numberOfSections()
-        XCTAssertEqual(numberOfSections, 4)
+        XCTAssertEqual(numberOfSections, 5)
     }
 
     func testNumberOfRowsInSection() {
@@ -43,26 +37,29 @@ class MoviesViewModelTests: XCTestCase
 
     func testTitleForHeaderInSection() {
         let title = viewModel.titleForHeaderInSection(section: 2)
-        XCTAssertEqual(title, "director")
+        XCTAssertEqual(title.lowercased(), "director")
     }
 
     func testIdentifierForRow() {
         let indexPath = IndexPath(row: 9, section: 0)
-        let identifier = viewModel.identifierForRow(at: indexPath)
-        XCTAssertEqual(identifier, "James Rolfe")
+        viewModel.filterMovies(section: .zero)
+        let identifier = (viewModel.getDataForRow(for: .actors, at: indexPath) as? GroupedMovies)?.identifier
+        XCTAssertEqual(identifier, "Ben Stiller")
     }
 
     func testMoviesForRow() {
         let indexPath = IndexPath(row: 0, section: 3)
-        let movies = viewModel.moviesForRow(at: indexPath)
-        XCTAssertEqual(movies.count, 1)
+        viewModel.filterMovies(section: 3)
+        let movies = (viewModel.getDataForRow(for: .director, at: indexPath) as? GroupedMovies)?.movies
+        XCTAssertEqual(movies?.count, 4)
     }
 
     func testMovieDetailForRow() {
         let indexPath = IndexPath(row: 2, section: 0)
+        viewModel.filterMovies(section: .zero)
         let releasedDate = viewModel.movieDetailForRow(at: indexPath).movies.first?.released
         
-        XCTAssertEqual(releasedDate, "27 Feb 2014")
+        XCTAssertEqual(releasedDate, "08 Jan 2000")
     }
 
     func testToggleSection() {
@@ -78,8 +75,10 @@ class MoviesViewModelTests: XCTestCase
     }
 
     func testFilterMovies() {
-        viewModel.filterMovies(text: "2005", section: .year)
+        viewModel.searchBarText = "Adam"
         let indexPath = IndexPath(row: 0, section: 3)
-        XCTAssertEqual(viewModel.moviesForRow(at: indexPath).count, 2)
+        viewModel.filterMovies(section: .zero)
+        let groupedMovie = viewModel.getDataForRow(for: .actors, at: indexPath) as? GroupedMovies
+        XCTAssertEqual(groupedMovie?.movies.count, 2)
     }
 }

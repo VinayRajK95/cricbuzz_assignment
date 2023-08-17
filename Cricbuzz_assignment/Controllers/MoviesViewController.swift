@@ -51,9 +51,9 @@ class MoviesViewController: UIViewController
         }
     }
     
-    private func filterMovies()
+    private func filterMovies(section: Int? = nil)
     {
-        viewModel.filterMovies()
+        viewModel.filterMovies(section: section)
         tableView.reloadData()
     }
 }
