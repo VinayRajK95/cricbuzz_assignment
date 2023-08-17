@@ -16,7 +16,7 @@ class MoviesViewModel
     {
         didSet
         {
-            dataSource.refreshSectionData(isSearchActive: !isSearchTextEmpty)
+            dataSource.refreshSectionData(isSearchActive: !isSearchTextEmpty, currentlyExpandedSection: currentlyExpandedSection)
         }
     }
     
@@ -41,28 +41,24 @@ class MoviesViewModel
 
     func numberOfRowsInSection(section: Int) -> Int
     {
-        if !isSearchTextEmpty
+        if section != currentlyExpandedSection && isSearchTextEmpty
         {
-            // Show the number of filtered rows when there's text in the search bar
+            return .zero
+        }
+        else if dataSource.sectionData[section].sectionType == .allMovies || !isSearchTextEmpty
+        {
             let moviesList = dataSource.filteredData.first?.movies ?? []
             return moviesList.count
         }
         else
         {
-            if section != currentlyExpandedSection
-            {
-                return .zero
-            }
-            else if dataSource.sectionData[section].sectionType == .allMovies
-            {
-                let moviesList = dataSource.filteredData.first?.movies ?? []
-                return moviesList.count
-            }
-            else
-            {
-                return dataSource.filteredData.count
-            }
+            return dataSource.filteredData.count
         }
+    }
+    
+    func isSectionCollapsed(section: Int) -> Bool
+    {
+        return dataSource.sectionData[section].isCollapsed
     }
 
     func titleForHeaderInSection(section: Int) -> String

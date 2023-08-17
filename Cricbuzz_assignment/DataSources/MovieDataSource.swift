@@ -58,8 +58,6 @@ class MovieDataSource
     private var movies: [Movie] = []
     
     var filteredData: [GroupedMovies] = []
-    
-    var currentlyExpandedSection: Int?
 
     var sectionData: [CollapsibleSection] = []
     
@@ -68,7 +66,7 @@ class MovieDataSource
         self.networkManager = networkManager
     }
     
-    func refreshSectionData(isSearchActive: Bool = false)
+    func refreshSectionData(isSearchActive: Bool = false, currentlyExpandedSection: Int? = nil)
     {
         if isSearchActive
         {
@@ -78,6 +76,10 @@ class MovieDataSource
         else
         {
             sectionData = Section.allCases.map { .init(title: $0.title, sectionType: $0, isCollapsed: true)
+            }
+            if let expandedSection = currentlyExpandedSection
+            {
+                sectionData[expandedSection].isCollapsed = false
             }
         }
     }
@@ -155,14 +157,3 @@ class MovieDataSource
         }
     }
 }
-
-
-
-
-// actors separated by each value
-// search option should be displaying only movie list
-// Github link
-// protocol based call
-// refactor cellForRowAt at movie list
-// change to tap gesture
-// refactor/modify

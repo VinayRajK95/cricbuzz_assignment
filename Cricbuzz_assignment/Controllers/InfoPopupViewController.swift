@@ -65,7 +65,7 @@ class InfoPopupViewController: UIViewController
         stackView = UIStackView(arrangedSubviews: [imbdRating, rottenTomatosLabel, metacriticLabel])
         stackView.setContentHuggingPriority(.required, for: .vertical)
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = UIUtils.eightPX
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(stackView)

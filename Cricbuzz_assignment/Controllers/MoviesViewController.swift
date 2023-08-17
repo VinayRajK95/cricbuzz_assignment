@@ -11,10 +11,10 @@ class MoviesViewController: UIViewController
 {
     enum Constants
     {
-        static let title = "Movies"
+        static let title = "Movie Database"
+        static let movieListSuffix = " Movies"
         static let titleCell = "MovieTitleCell"
         static let movieCell = "MovieCell"
-        static let filteredMoviesTitle = "Filtered movies"
     }
 
     @IBOutlet weak var tableView: UITableView!
@@ -93,10 +93,10 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleTableViewHeaderView.reuseIdentifier) as? CollapsibleTableViewHeaderView
         else { return nil }
         
-        let title = viewModel.isSearchTextEmpty ? viewModel.titleForHeaderInSection(section: section) : Constants.filteredMoviesTitle
         headerView.delegate = self
         headerView.section = section
-        headerView.setTitle(title: title)
+        headerView.isCollapsed = viewModel.isSectionCollapsed(section: section)
+        headerView.setTitle(title: viewModel.titleForHeaderInSection(section: section), hideIndicatorView: !viewModel.isSearchTextEmpty)
         return headerView
     }
 
@@ -117,7 +117,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
         {
             let identifier = groupedMovie.identifier
             let movieListViewController = MovieListViewController(viewModel: .init(movies: groupedMovie.movies))
-            movieListViewController.title = identifier + " \(Constants.title)"
+            movieListViewController.title = identifier + Constants.movieListSuffix
             navigationController?.pushViewController(movieListViewController, animated: true)
         }
     }

@@ -166,6 +166,22 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		F5BC98C42A8E1C9B00F1741C /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				F5B2BA022A874DB100940503 /* MovieDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		F5BC98C52A8E1CAA00F1741C /* MockJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				F5DB0FDE2A8615C400D98D83 /* movies.json */,
+			);
+			path = MockJSONs;
+			sourceTree = "<group>";
+		};
 		F5DB0FA02A86155800D98D83 = {
 			isa = PBXGroup;
 			children = (
@@ -197,8 +213,8 @@
 				F5B2BA112A879C0C00940503 /* ViewModels */,
 				F5B2BA0F2A87989600940503 /* Helpers */,
 				F5B2BA102A8798A100940503 /* Model */,
-				F5B2BA022A874DB100940503 /* MovieDataSource.swift */,
-				F5DB0FDE2A8615C400D98D83 /* movies.json */,
+				F5BC98C42A8E1C9B00F1741C /* DataSources */,
+				F5BC98C52A8E1CAA00F1741C /* MockJSONs */,
 				F5DB0FB52A86155A00D98D83 /* Assets.xcassets */,
 				F5DB0FB72A86155A00D98D83 /* LaunchScreen.storyboard */,
 				F5DB0FBA2A86155A00D98D83 /* Info.plist */,

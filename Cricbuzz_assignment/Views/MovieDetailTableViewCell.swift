@@ -87,7 +87,7 @@ class MovieDetailTableViewCell: UITableViewCell
         // Constraints for posterImageView
         posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIUtils.twelvePX).isActive = true
         posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIUtils.twelvePX).isActive = true
-        posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UIUtils.twelvePX).isActive = true
+        posterImageView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -UIUtils.twelvePX).isActive = true
         posterImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         posterImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
