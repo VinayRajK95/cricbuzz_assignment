@@ -13,6 +13,12 @@ class MoviesViewModel
     private var dataSource: MovieDataSource
     private let kEmptyString = ""
     var searchBarText: String
+    {
+        didSet
+        {
+            dataSource.refreshSectionData(isSearchActive: !isSearchTextEmpty)
+        }
+    }
     
     var isSearchTextEmpty: Bool
     {
@@ -23,21 +29,23 @@ class MoviesViewModel
 
     init(movieNetworkManager: NetworkManagerProtocol)
     {
-        dataSource = MovieDataSource(networkManager: movieNetworkManager)
         self.searchBarText = kEmptyString
+        dataSource = MovieDataSource(networkManager: movieNetworkManager)
+        dataSource.refreshSectionData()
     }
 
     func numberOfSections() -> Int
     {
-        return searchBarText.isEmpty ? dataSource.sectionData.count : 1
+        return dataSource.sectionData.count
     }
 
     func numberOfRowsInSection(section: Int) -> Int
     {
-        if !searchBarText.isEmpty
+        if !isSearchTextEmpty
         {
             // Show the number of filtered rows when there's text in the search bar
-            return dataSource.filteredData.count
+            let moviesList = dataSource.filteredData.first?.movies ?? []
+            return moviesList.count
         }
         else
         {
@@ -45,7 +53,7 @@ class MoviesViewModel
             {
                 return .zero
             }
-            else if isAllMoviesSection(section: section)
+            else if dataSource.sectionData[section].sectionType == .allMovies
             {
                 let moviesList = dataSource.filteredData.first?.movies ?? []
                 return moviesList.count
@@ -55,12 +63,6 @@ class MoviesViewModel
                 return dataSource.filteredData.count
             }
         }
-    }
-    
-    func isAllMoviesSection(section: Int) -> Bool
-    {
-        let allMoviesSection: Int = SectionType.allMovies.rawValue
-        return section == allMoviesSection
     }
 
     func titleForHeaderInSection(section: Int) -> String
@@ -72,19 +74,18 @@ class MoviesViewModel
     {
         if sectionType == .allMovies
         {
-            let movie = dataSource.filteredData.first?.movies[indexPath.row]
-            return movie as Any
+            return dataSource.filteredData.first?.movies[indexPath.row] as Any
         }
         else
         {
-            let data = dataSource.filteredData[indexPath.row]
-            return data.identifier
+            return dataSource.filteredData[indexPath.row]
         }
     }
     
-    func getSectionType(for section: Int) -> SectionType?
+    func getSectionType(for section: Int) -> SectionType
     {
-        return SectionType.init(rawValue: section)
+        let section = dataSource.sectionData[section]
+        return section.sectionType
     }
     
     func movieDetailForRow(at indexPath: IndexPath) -> GroupedMovies
@@ -110,9 +111,17 @@ class MoviesViewModel
         }
     }
 
-    func filterMovies(section: SectionType)
+    func filterMovies()
     {
-        dataSource.filterMovies(text: searchBarText, attribute: section)
+        if let expandedSection = currentlyExpandedSection
+        {
+            let sectionType = getSectionType(for: expandedSection)
+            dataSource.filterMovies(text: searchBarText, attribute: sectionType)
+        }
+        else
+        {
+            dataSource.filterMovies(text: searchBarText, attribute: .allMovies)
+        }
     }
     
     func fetchMovies(comp: @escaping ()->Void)

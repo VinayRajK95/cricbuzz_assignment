@@ -43,20 +43,13 @@ class RatingControl: UIControl
     
     private func setupGestureRecognizers()
     {
-        let longPressGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        addGestureRecognizer(longPressGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handletap(_:)))
+        addGestureRecognizer(tapGestureRecognizer)
     }
     
-    @objc private func handleLongPress(_ gestureRecognizer: UITapGestureRecognizer)
+    @objc private func handletap(_ gestureRecognizer: UITapGestureRecognizer)
     {
-        if gestureRecognizer.state == .began
-        {
-            showPopup()
-        }
-        else if gestureRecognizer.state == .ended
-        {
-            dismissPopup()
-        }
+        showPopup()
     }
     
     private func showPopup()

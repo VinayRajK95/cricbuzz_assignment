@@ -20,7 +20,8 @@
 		F5B2BA192A87B27900940503 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B2BA182A87B27900940503 /* RatingControl.swift */; };
 		F5B2BA1B2A87BDF800940503 /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B2BA1A2A87BDF800940503 /* UIImageView+extension.swift */; };
 		F5B2BA1D2A87C0E800940503 /* InfoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B2BA1C2A87C0E800940503 /* InfoPopupViewController.swift */; };
-		F5C7C6592A8CA5F0003E0D49 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C7C6582A8CA5F0003E0D49 /* File.swift */; };
+		F5BC98BF2A8DE38600F1741C /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC98BE2A8DE38600F1741C /* JsonParser.swift */; };
+		F5BC98C12A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC98C02A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift */; };
 		F5DB0FAD2A86155800D98D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FAC2A86155800D98D83 /* AppDelegate.swift */; };
 		F5DB0FAF2A86155800D98D83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FAE2A86155800D98D83 /* SceneDelegate.swift */; };
 		F5DB0FB12A86155800D98D83 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DB0FB02A86155800D98D83 /* MoviesViewController.swift */; };
@@ -66,7 +67,8 @@
 		F5B2BA182A87B27900940503 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		F5B2BA1A2A87BDF800940503 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
 		F5B2BA1C2A87C0E800940503 /* InfoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupViewController.swift; sourceTree = "<group>"; };
-		F5C7C6582A8CA5F0003E0D49 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		F5BC98BE2A8DE38600F1741C /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		F5BC98C02A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		F5DB0FA92A86155800D98D83 /* Cricbuzz_assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cricbuzz_assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5DB0FAC2A86155800D98D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5DB0FAE2A86155800D98D83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				F5B2B9FC2A873E4300940503 /* MovieTitleTableViewCell.swift */,
 				F5B2BA0B2A87818900940503 /* MovieDetailTableViewCell.swift */,
 				F5B2BA182A87B27900940503 /* RatingControl.swift */,
+				F5BC98C02A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,7 +129,6 @@
 				F5DB0FB02A86155800D98D83 /* MoviesViewController.swift */,
 				F5B2BA062A875C8C00940503 /* MovieListViewController.swift */,
 				F5B2BA082A875D9600940503 /* MovieDetailViewController.swift */,
-				F5C7C6582A8CA5F0003E0D49 /* File.swift */,
 				F5B2BA1C2A87C0E800940503 /* InfoPopupViewController.swift */,
 			);
 			path = Controllers;
@@ -138,6 +140,7 @@
 				F5B2B9FE2A87494800940503 /* NetworkManager.swift */,
 				F5B2BA002A87497600940503 /* UIView+constraints.swift */,
 				F5B2BA1A2A87BDF800940503 /* UIImageView+extension.swift */,
+				F5BC98BE2A8DE38600F1741C /* JsonParser.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				F5B2BA042A874DEA00940503 /* MoviesViewModel.swift */,
+				F5B2BA142A879C2D00940503 /* MovieDetailsViewModel.swift */,
 				F5B2BA122A879C1A00940503 /* MovieListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -188,11 +192,10 @@
 				F5B2BA0E2A87986B00940503 /* Controllers */,
 				F5B2BA0D2A87986300940503 /* Views */,
 				F5B2BA112A879C0C00940503 /* ViewModels */,
-				F5B2BA022A874DB100940503 /* MovieDataSource.swift */,
 				F5B2BA0F2A87989600940503 /* Helpers */,
 				F5B2BA102A8798A100940503 /* Model */,
+				F5B2BA022A874DB100940503 /* MovieDataSource.swift */,
 				F5DB0FDE2A8615C400D98D83 /* movies.json */,
-				F5B2BA142A879C2D00940503 /* MovieDetailsViewModel.swift */,
 				F5DB0FB52A86155A00D98D83 /* Assets.xcassets */,
 				F5DB0FB72A86155A00D98D83 /* LaunchScreen.storyboard */,
 				F5DB0FBA2A86155A00D98D83 /* Info.plist */,
@@ -356,8 +359,8 @@
 				F5B2BA092A875D9600940503 /* MovieDetailViewController.swift in Sources */,
 				F5DB0FE12A8617FB00D98D83 /* MoviesModel.swift in Sources */,
 				F5DB0FB12A86155800D98D83 /* MoviesViewController.swift in Sources */,
-				F5C7C6592A8CA5F0003E0D49 /* File.swift in Sources */,
 				F5B2BA032A874DB100940503 /* MovieDataSource.swift in Sources */,
+				F5BC98BF2A8DE38600F1741C /* JsonParser.swift in Sources */,
 				F5DB0FAD2A86155800D98D83 /* AppDelegate.swift in Sources */,
 				F5B2BA152A879C2D00940503 /* MovieDetailsViewModel.swift in Sources */,
 				F5B2BA1B2A87BDF800940503 /* UIImageView+extension.swift in Sources */,
@@ -366,6 +369,7 @@
 				F5B2BA0C2A87818900940503 /* MovieDetailTableViewCell.swift in Sources */,
 				F5B2BA132A879C1A00940503 /* MovieListViewModel.swift in Sources */,
 				F5B2BA052A874DEA00940503 /* MoviesViewModel.swift in Sources */,
+				F5BC98C12A8DFF5800F1741C /* CollapsibleTableViewHeaderView.swift in Sources */,
 				F5DB0FAF2A86155800D98D83 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

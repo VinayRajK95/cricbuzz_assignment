@@ -9,7 +9,13 @@ import Foundation
 
 class MovieDataSource
 {
-    enum Section: Int, CaseIterable
+    enum Constants
+    {
+        static let moviesJsonFileName = "movies"
+        static let allMoviesKey = "allMovies"
+    }
+    
+    enum Section: CaseIterable
     {
         case actors
         case genre
@@ -43,7 +49,8 @@ class MovieDataSource
     struct CollapsibleSection
     {
         var title: String
-        var isCollapsed: Bool
+        var sectionType: Section
+        var isCollapsed: Bool = true
     }
     
     private let networkManager: NetworkManagerProtocol
@@ -54,12 +61,25 @@ class MovieDataSource
     
     var currentlyExpandedSection: Int?
 
-    var sectionData: [CollapsibleSection] = Section.allCases.map { .init(title: $0.title, isCollapsed: true)
-    }
+    var sectionData: [CollapsibleSection] = []
     
     init(networkManager: NetworkManagerProtocol)
     {
         self.networkManager = networkManager
+    }
+    
+    func refreshSectionData(isSearchActive: Bool = false)
+    {
+        if isSearchActive
+        {
+            let allMoviesSection  = Section.allMovies
+            sectionData = [.init(title: allMoviesSection.title, sectionType: allMoviesSection, isCollapsed: false)]
+        }
+        else
+        {
+            sectionData = Section.allCases.map { .init(title: $0.title, sectionType: $0, isCollapsed: true)
+            }
+        }
     }
 
     func filterMovies(text: String, attribute: Section)
@@ -76,8 +96,10 @@ class MovieDataSource
             case .genre:
                 groupedMovies = groupMoviesByList(\.genreList)
             case .allMovies:
-                groupedMovies = ["allMovies": movies]
+                groupedMovies = [Constants.allMoviesKey: movies]
         }
+        
+        // Sort the grouped list and also filter by search text conditionally
         let sortedKeys = groupedMovies.keys.sorted()
 
         filteredData =  sortedKeys.compactMap { key in
@@ -96,6 +118,7 @@ class MovieDataSource
     
     private func groupMoviesByList(_ listKeyPath: KeyPath<Movie, [String]>) -> [String: [Movie]]
     {
+        // Grouping as per the actor/genre/director
         var groupedMovies: [String: [Movie]] = [:]
         for movie in movies {
             let list = movie[keyPath: listKeyPath]
@@ -113,11 +136,12 @@ class MovieDataSource
     
     func fetchMovies(comp: @escaping ()->Void)
     {
-        networkManager.fetchMoviesModel { [unowned self] (result: Result<[Movie], JSONError>) in
+        networkManager.fetchMoviesModel(from: Constants.moviesJsonFileName)
+        { [weak self] (result: Result<[Movie], JSONError>) in
             switch result
             {
                 case .success(let movies):
-                    self.movies = movies
+                    self?.movies = movies
                     comp()
                 case .failure(let error):
                     switch error

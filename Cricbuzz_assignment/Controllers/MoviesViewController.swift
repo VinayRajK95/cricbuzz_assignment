@@ -14,6 +14,7 @@ class MoviesViewController: UIViewController
         static let title = "Movies"
         static let titleCell = "MovieTitleCell"
         static let movieCell = "MovieCell"
+        static let filteredMoviesTitle = "Filtered movies"
     }
 
     @IBOutlet weak var tableView: UITableView!
@@ -36,18 +37,25 @@ class MoviesViewController: UIViewController
     {
         tableView.register(MovieTitleTableViewCell.self, forCellReuseIdentifier: Constants.titleCell)
         tableView.register(MovieDetailTableViewCell.self, forCellReuseIdentifier: Constants.movieCell)
+        tableView.register(CollapsibleTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CollapsibleTableViewHeaderView.reuseIdentifier)
     }
 
     private func fetchMovies()
     {
-        viewModel.fetchMovies {
+        viewModel.fetchMovies
+        {
             DispatchQueue.main.async
             {
                 self.tableView.reloadData()
             }
         }
     }
-
+    
+    private func filterMovies()
+    {
+        viewModel.filterMovies()
+        tableView.reloadData()
+    }
 }
 
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
@@ -64,16 +72,16 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        guard let sectionType = viewModel.getSectionType(for: indexPath.section)
-        else { return .init() }
-
+        let sectionType = viewModel.getSectionType(for: indexPath.section)
         let cell = tableView.dequeueReusableCell(withIdentifier: sectionType.cellIdentifier, for: indexPath)
         
         let data = viewModel.getDataForRow(for: sectionType, at: indexPath)
 
-        if sectionType == .allMovies, let movie = data as? Movie, let cell = cell as? MovieDetailTableViewCell {
+        if let movie = data as? Movie, let cell = cell as? MovieDetailTableViewCell
+        {
             cell.configure(with: movie)
-        } else if let title = data as? String, let cell = cell as? MovieTitleTableViewCell {
+        }
+        else if let title = (data as? GroupedMovies)?.identifier, let cell = cell as? MovieTitleTableViewCell {
             cell.configure(with: title)
         }
         
@@ -82,12 +90,13 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let headerView = UITableViewHeaderFooterView()
-        headerView.textLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        headerView.textLabel?.text = viewModel.isSearchTextEmpty ? viewModel.titleForHeaderInSection(section: section) : "Filtered movies"
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleSection(_:)))
-        headerView.tag = section
-        headerView.addGestureRecognizer(tapGestureRecognizer)
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleTableViewHeaderView.reuseIdentifier) as? CollapsibleTableViewHeaderView
+        else { return nil }
+        
+        let title = viewModel.isSearchTextEmpty ? viewModel.titleForHeaderInSection(section: section) : Constants.filteredMoviesTitle
+        headerView.delegate = self
+        headerView.section = section
+        headerView.setTitle(title: title)
         return headerView
     }
 
@@ -95,40 +104,35 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource
     {
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        if viewModel.isAllMoviesSection(section: indexPath.section)
-//        {
-//            let movie = viewModel.moviesForRow(at: .init(row: .zero, section: .zero))[indexPath.row]
-//            let movieDetailsVM = MovieDetailsViewModel(selectedMovie: movie)
-//            let movieDetailVC = MovieDetailViewController(viewModel: movieDetailsVM)
-//            navigationController?.pushViewController(movieDetailVC, animated: true)
-//        }
-//        else
-//        {
-//            let movies = viewModel.moviesForRow(at: indexPath)
-//            let identifier = viewModel.identifierForRow(at: indexPath).components(separatedBy: ",").first ?? ""
-//            let movieListViewController = MovieListViewController(viewModel: .init(movies: movies))
-//            movieListViewController.title = identifier + " Movies"
-//            navigationController?.pushViewController(movieListViewController, animated: true)
-//        }
+        let sectionType = viewModel.getSectionType(for: indexPath.section)
+        if sectionType == .allMovies,
+           let movie = viewModel.getDataForRow(for: sectionType, at: indexPath) as? Movie
+        {
+            
+            let movieDetailsVM = MovieDetailsViewModel(selectedMovie: movie)
+            let movieDetailVC = MovieDetailViewController(viewModel: movieDetailsVM)
+            navigationController?.pushViewController(movieDetailVC, animated: true)
+        }
+        else if let groupedMovie = viewModel.getDataForRow(for: sectionType, at: indexPath) as? GroupedMovies
+        {
+            let identifier = groupedMovie.identifier
+            let movieListViewController = MovieListViewController(viewModel: .init(movies: groupedMovie.movies))
+            movieListViewController.title = identifier + " \(Constants.title)"
+            navigationController?.pushViewController(movieListViewController, animated: true)
+        }
     }
+}
 
-    @objc func toggleSection(_ sender: UITapGestureRecognizer)
+extension MoviesViewController: CollapsibleTableViewHeaderViewDelegate
+{
+    func toggleSection(headerView: CollapsibleTableViewHeaderView, section: Int)
     {
-        guard let section = sender.view?.tag,
-              let sectionType = MovieDataSource.Section(rawValue: section),
-              viewModel.isSearchTextEmpty
+        guard viewModel.isSearchTextEmpty
         else { return }
         
         viewModel.toggleSection(sectionIndex: section)
-        filterMovies(section: sectionType)
+        filterMovies()
     }
-
-    private func filterMovies(section: MovieDataSource.Section)
-    {
-        viewModel.filterMovies(section: section)
-        tableView.reloadData()
-    }
-
 }
 
 
@@ -137,7 +141,7 @@ extension MoviesViewController: UISearchBarDelegate
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         viewModel.searchBarText = searchText
-        filterMovies(section: .allMovies)
+        filterMovies()
     }
 }
 

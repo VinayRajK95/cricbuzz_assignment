@@ -22,7 +22,7 @@ class MovieDetailViewController: UIViewController
     private let titleLabel: UILabel =
     {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
         label.numberOfLines = .zero
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -141,47 +141,47 @@ class MovieDetailViewController: UIViewController
         
         NSLayoutConstraint.activate([
             // posterImageView constraints
-            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             posterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             posterImageView.widthAnchor.constraint(equalToConstant: 300),
             posterImageView.heightAnchor.constraint(equalToConstant: 400),
 
             // titleLabel constraints
-            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 24),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
 
             // actors constraints
-            actors.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            actors.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            actors.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            actors.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
+            actors.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            actors.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
 
             // releaseDateLabel constraints
-            releaseDateLabel.topAnchor.constraint(equalTo: actors.bottomAnchor, constant: 10),
-            releaseDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            releaseDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            releaseDateLabel.topAnchor.constraint(equalTo: actors.bottomAnchor, constant: 12),
+            releaseDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            releaseDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
 
             // genreLabel constraints
-            genreLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 10),
-            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            genreLabel.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 12),
+            genreLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            genreLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
 
             // ratingLabel constraints
-            ratingLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 10),
-            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            ratingLabel.topAnchor.constraint(equalTo: genreLabel.bottomAnchor, constant: 12),
+            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             
             // ratingInfo constraints
             ratingInfo.leadingAnchor.constraint(equalTo: ratingLabel.trailingAnchor, constant: 8),
-            ratingInfo.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
+            ratingInfo.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -24),
             ratingInfo.centerYAnchor.constraint(equalTo: ratingLabel.centerYAnchor),
             ratingInfo.widthAnchor.constraint(equalToConstant: 24),
             ratingInfo.heightAnchor.constraint(equalToConstant: 24),
 
             // plotLabel constraints
-            plotLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 10),
-            plotLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            plotLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            plotLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            plotLabel.topAnchor.constraint(equalTo: ratingLabel.bottomAnchor, constant: 12),
+            plotLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            plotLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            plotLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
         ])
     }
     

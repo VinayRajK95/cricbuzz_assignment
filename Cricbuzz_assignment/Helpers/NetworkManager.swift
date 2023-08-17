@@ -9,7 +9,7 @@ import Foundation
 
 protocol NetworkManagerProtocol: AnyObject
 {
-    func fetchMoviesModel(completion: @escaping (Result<[Movie], JSONError>) -> Void)
+    func fetchMoviesModel(from: String, completion: @escaping (Result<[Movie], JSONError>) -> Void)
 }
 
 enum JSONError: Error
@@ -18,13 +18,26 @@ enum JSONError: Error
     case decodingFailed
 }
 
+
+class MovieNetworkManager: NetworkManagerProtocol
+{
+    func fetchMoviesModel(from: String, completion: @escaping (Result<[Movie], JSONError>) -> Void)
+    {
+        // API logic can be implemented here
+    }
+}
+
 class MovieLocalNetworkManager: NetworkManagerProtocol
 {
-    func fetchMoviesModel(completion: @escaping (Result<[Movie], JSONError>) -> Void)
+    enum Constants
+    {
+        static let jsonFileExtension = "json"
+    }
+    func fetchMoviesModel(from: String, completion: @escaping (Result<[Movie], JSONError>) -> Void)
     {
         DispatchQueue.global(qos: .background).async
         {
-            guard let fileURL = Bundle.main.url(forResource: "movies", withExtension: "json")
+            guard let fileURL = Bundle.main.url(forResource: from, withExtension: Constants.jsonFileExtension)
             else
             {
                 completion(.failure(.fileNotFound))
@@ -33,7 +46,7 @@ class MovieLocalNetworkManager: NetworkManagerProtocol
             do
             {
                 let jsonData = try Data(contentsOf: fileURL)
-                let movies = try JSONDecoder().decode([Movie].self, from: jsonData)
+                let movies: [Movie] = try JsonParser().parseJSON(from: jsonData)
                 completion(.success(movies))
             }
             catch
@@ -42,14 +55,5 @@ class MovieLocalNetworkManager: NetworkManagerProtocol
                     completion(.failure(.decodingFailed))
             }
         }
-    }
-}
-
-
-class MovieNetworkManager: NetworkManagerProtocol
-{
-    func fetchMoviesModel(completion: @escaping (Result<[Movie], JSONError>) -> Void)
-    {
-        // API logic can be implemented here
     }
 }

@@ -7,11 +7,12 @@
 
 import Foundation
 
-class MovieListViewModel {
-    
+class MovieListViewModel
+{
     var movies: [Movie]
     
-    init(movies: [Movie]) {
+    init(movies: [Movie])
+    {
         self.movies = movies
     }
 }
